@@ -42,8 +42,8 @@ const ProductCard = ({ id, name, brand, price, rating, image, onAddToBuild }: Pr
 
   return (
     <Card className="group hover:shadow-lg transition-shadow duration-200 bg-card border-border">
-      <CardContent className="p-4">
-        <div className="aspect-square bg-tech-gray rounded-lg mb-4 overflow-hidden">
+      <CardContent className="p-3 md:p-4">
+        <div className="aspect-square bg-tech-gray rounded-lg mb-3 md:mb-4 overflow-hidden">
           <img
             src={image}
             alt={name}
@@ -52,7 +52,7 @@ const ProductCard = ({ id, name, brand, price, rating, image, onAddToBuild }: Pr
         </div>
         
         <div className="space-y-2">
-          <h3 className="font-semibold text-foreground text-sm leading-tight line-clamp-2">
+          <h3 className="font-semibold text-foreground text-xs md:text-sm leading-tight line-clamp-2">
             {name}
           </h3>
           
@@ -69,13 +69,13 @@ const ProductCard = ({ id, name, brand, price, rating, image, onAddToBuild }: Pr
             </span>
           </div>
           
-          <div className="flex items-center justify-between pt-2">
-            <span className="font-bold text-lg text-foreground">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between pt-2 space-y-2 md:space-y-0">
+            <span className="font-bold text-sm md:text-lg text-foreground">
               ${price.toFixed(2)}
             </span>
             <Button 
               size="sm" 
-              className="bg-tech-blue hover:bg-tech-blue/90 text-white"
+              className="bg-tech-blue hover:bg-tech-blue/90 text-white text-xs md:text-sm w-full md:w-auto"
               onClick={handleAddToBuild}
             >
               Add to Build

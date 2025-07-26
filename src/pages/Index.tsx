@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import FilterSidebar from "@/components/FilterSidebar";
 import ProductCard from "@/components/ProductCard";
 import BuildSidebar from "@/components/BuildSidebar";
+import MobileFilters from "@/components/MobileFilters";
+import MobileBuildSummary from "@/components/MobileBuildSummary";
 import Footer from "@/components/Footer";
 
 // Import images
@@ -82,12 +84,17 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <MobileFilters />
       
       <div className="flex">
-        <FilterSidebar />
+        {/* Desktop Filter Sidebar */}
+        <div className="hidden md:block">
+          <FilterSidebar />
+        </div>
         
-        <main className="flex-1 p-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Main Content */}
+        <main className="flex-1 p-4 md:p-6 pb-32 md:pb-6">
+          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
             {products.map((product) => (
               <ProductCard
                 key={product.id}
@@ -98,13 +105,24 @@ const Index = () => {
           </div>
         </main>
         
-        <BuildSidebar
-          buildItems={buildItems}
-          onRemoveItem={handleRemoveFromBuild}
-        />
+        {/* Desktop Build Sidebar */}
+        <div className="hidden md:block">
+          <BuildSidebar
+            buildItems={buildItems}
+            onRemoveItem={handleRemoveFromBuild}
+          />
+        </div>
       </div>
       
-      <Footer />
+      {/* Mobile Build Summary */}
+      <MobileBuildSummary
+        buildItems={buildItems}
+        onRemoveItem={handleRemoveFromBuild}
+      />
+      
+      <div className="hidden md:block">
+        <Footer />
+      </div>
     </div>
   );
 };
