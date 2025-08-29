@@ -3,21 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
-interface BuildItem {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  image: string;
-}
-
-interface BuildSidebarProps {
-  buildItems: BuildItem[];
-  onRemoveItem: (id: string) => void;
-}
-
-const BuildSidebar = ({ buildItems, onRemoveItem }: BuildSidebarProps) => {
-  const subtotal = buildItems.reduce((sum, item) => sum + item.price, 0);
+const BuildSidebar = ({ items, onRemoveItem, onUpdateQuantity }) => {
+  const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const shipping = 0; // Free shipping
   const total = subtotal + shipping;
 
@@ -28,13 +15,13 @@ const BuildSidebar = ({ buildItems, onRemoveItem }: BuildSidebarProps) => {
           <CardTitle className="text-lg font-semibold">Your Build</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          {buildItems.length === 0 ? (
+          {items.length === 0 ? (
             <p className="text-muted-foreground text-sm">
               No components added yet. Start building your PC by adding components.
             </p>
           ) : (
             <>
-              {buildItems.map((item) => (
+              {items.map((item) => (
                 <div key={item.id} className="flex items-center space-x-3 group">
                   <div className="w-12 h-12 bg-tech-gray rounded-lg overflow-hidden flex-shrink-0">
                     <img
@@ -49,7 +36,7 @@ const BuildSidebar = ({ buildItems, onRemoveItem }: BuildSidebarProps) => {
                     </h4>
                     <p className="text-xs text-muted-foreground">{item.brand}</p>
                     <p className="text-sm font-semibold text-foreground">
-                      ${item.price.toFixed(2)}
+                      ${item.price.toFixed(2)} × {item.quantity}
                     </p>
                   </div>
                   <Button

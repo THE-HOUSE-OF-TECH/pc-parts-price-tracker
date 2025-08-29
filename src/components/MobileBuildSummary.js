@@ -4,24 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
-interface BuildItem {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  image: string;
-}
-
-interface MobileBuildSummaryProps {
-  buildItems: BuildItem[];
-  onRemoveItem: (id: string) => void;
-}
-
-const MobileBuildSummary = ({ buildItems, onRemoveItem }: MobileBuildSummaryProps) => {
+const MobileBuildSummary = ({ items, onRemoveItem, onUpdateQuantity }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const total = buildItems.reduce((sum, item) => sum + item.price, 0);
+  const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-  if (buildItems.length === 0) return null;
+  if (items.length === 0) return null;
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 bg-card border-t border-border">
@@ -33,7 +20,7 @@ const MobileBuildSummary = ({ buildItems, onRemoveItem }: MobileBuildSummaryProp
         <div>
           <h3 className="font-semibold text-foreground">Your Build</h3>
           <p className="text-sm text-muted-foreground">
-            {buildItems.length} items • ${total.toFixed(2)}
+            {items.length} items • ${total.toFixed(2)}
           </p>
         </div>
         <div className="flex items-center space-x-2">
@@ -61,7 +48,7 @@ const MobileBuildSummary = ({ buildItems, onRemoveItem }: MobileBuildSummaryProp
       {isExpanded && (
         <div className="border-t border-border">
           <div className="max-h-80 overflow-y-auto p-4 space-y-3">
-            {buildItems.map((item) => (
+            {items.map((item) => (
               <div key={item.id} className="flex items-center space-x-3">
                 <div className="w-12 h-12 bg-tech-gray rounded-lg overflow-hidden flex-shrink-0">
                   <img
@@ -76,7 +63,7 @@ const MobileBuildSummary = ({ buildItems, onRemoveItem }: MobileBuildSummaryProp
                   </h4>
                   <p className="text-xs text-muted-foreground">{item.brand}</p>
                   <p className="text-sm font-semibold text-foreground">
-                    ${item.price.toFixed(2)}
+                    ${item.price.toFixed(2)} × {item.quantity}
                   </p>
                 </div>
                 <Button

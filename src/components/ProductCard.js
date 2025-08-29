@@ -2,18 +2,8 @@ import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-interface ProductCardProps {
-  id: string;
-  name: string;
-  brand: string;
-  price: number;
-  rating: number;
-  image: string;
-  onAddToBuild: (product: any) => void;
-}
-
-const ProductCard = ({ id, name, brand, price, rating, image, onAddToBuild }: ProductCardProps) => {
-  const renderStars = (rating: number) => {
+const ProductCard = ({ id, name, brand, price, rating, image, onAddToBuild }) => {
+  const renderStars = (rating) => {
     const stars = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
