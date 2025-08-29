@@ -1,13 +1,11 @@
-"use client"
-
 import { useState } from "react";
-import Header from "@/components/Header";
-import FilterSidebar from "@/components/FilterSidebar";
-import ProductCard from "@/components/ProductCard";
-import BuildSidebar from "@/components/BuildSidebar";
-import MobileBuildSummary from "@/components/MobileBuildSummary";
-import MobileFilters from "@/components/MobileFilters";
-import Footer from "@/components/Footer";
+import Header from "@/components/Header.jsx";
+import FilterSidebar from "@/components/FilterSidebar.jsx";
+import ProductCard from "@/components/ProductCard.jsx";
+import BuildSidebar from "@/components/BuildSidebar.jsx";
+import MobileBuildSummary from "@/components/MobileBuildSummary.jsx";
+import MobileFilters from "@/components/MobileFilters.jsx";
+import Footer from "@/components/Footer.jsx";
 import { Button } from "@/components/ui/button";
 import { Grid, List } from "lucide-react";
 import intelI9 from "@/assets/intel-i9-13900k.jpg";

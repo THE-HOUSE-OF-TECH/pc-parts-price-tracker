@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
-import Index from './pages/Index'
-import NotFound from './pages/NotFound'
+import Index from './pages/Index.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 function App() {
   return (
